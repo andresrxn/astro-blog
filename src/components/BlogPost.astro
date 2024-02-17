@@ -1,0 +1,43 @@
+---
+const { url, title, imageURL, description } = Astro.props
+---
+
+<li>
+  <img src={imageURL} alt='' />
+  <div>
+    <a href={url}>{title}</a>
+    <p>{description}</p>
+  </div>
+</li>
+
+<style>
+  li {
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 2px 2px 10px -4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: flex;
+    gap: 25px;
+    align-items: center;
+  }
+  p {
+    color: #777;
+    text-wrap: pretty;
+    margin: 0;
+    margin-top: 5px;
+  }
+  img {
+    width: 200px;
+    flex-shrink: 0;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    background-color: #ddd;
+    object-position: center;
+  }
+  a {
+    color: royalblue;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+</style>

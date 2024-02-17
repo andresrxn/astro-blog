@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: Mi primera publicación en el blog
+title: Mi primer post!
 author: Alumno de Astro
 description: Este es la primera publicación de mi nuevo blog Astro.
 image:
