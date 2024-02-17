@@ -1,11 +1,34 @@
 ---
 import Hamburger from './Hamburger.astro'
 import Navigation from './Navigation.astro'
+import ThemeIcon from './ThemeIcon.astro'
 ---
 
 <header>
   <nav>
-    <Hamburger />
+    <div class='wrapper'>
+      <Hamburger />
+      <ThemeIcon />
+    </div>
+
     <Navigation />
   </nav>
 </header>
+
+<style>
+  .wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  @media (width >= 1000px) {
+    nav {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+  nav {
+  }
+</style>

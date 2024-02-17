@@ -2,7 +2,14 @@ html {
   background-color: #f1f5f9;
   font-family: sans-serif;
 }
+html.dark {
+  background-color: #1a1a1a;
+  color: #fff;
+}
 
+.dark .nav-links a {
+  color: #fff;
+}
 body {
   margin: 0 auto;
   width: 100%;
@@ -39,7 +46,7 @@ h1 {
   width: 100%;
   top: 5rem;
   left: 48px;
-
+  border-bottom: 1px solid;
   display: none;
   margin: 0;
 }
@@ -67,7 +74,6 @@ h1 {
 
 @media screen and (min-width: 636px) {
   .nav-links {
-    margin-left: 5em;
     display: block;
     position: static;
     width: auto;
