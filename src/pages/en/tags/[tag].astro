@@ -1,0 +1,56 @@
+---
+import { getCollection } from 'astro:content'
+import BlogPost from '../../../components/BlogPost.astro'
+import {
+  getLangFromUrl,
+  getRouteFromUrl,
+  useTranslatedPath
+} from '../../../i18n/utils'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import { capitalize } from '../../../utils/global'
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('posts')
+  const uniqueTags = [...new Set(allPosts.map(post => post.data.tags).flat())]
+
+  return uniqueTags.map(tag => {
+    const filteredPosts = allPosts.filter(post => post.data.tags.includes(tag))
+    return {
+      params: { tag },
+      props: { posts: filteredPosts }
+    }
+  })
+}
+
+const { tag } = Astro.params
+const { posts } = Astro.props
+
+const route = getRouteFromUrl(Astro.url)
+const lang = getLangFromUrl(Astro.url)
+const translatePath = useTranslatedPath(lang)
+---
+
+<BaseLayout pageTitle={capitalize(tag)}>
+  <p>Tags entries with: {tag}</p>
+  <ul>
+    {
+      posts.map(post => (
+        <BlogPost
+          url={translatePath(`/${route ? route : ''}/posts/${post.slug}`, lang)}
+          title={post.data.title}
+          imageURL={post.data.image.url}
+          description={post.data.description}
+        />
+      ))
+    }
+  </ul>
+</BaseLayout>
+
+<style>
+  ul {
+    margin-top: 40px;
+    display: grid;
+    gap: 20px;
+    padding: 0;
+  }
+</style>

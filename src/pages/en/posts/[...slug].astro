@@ -1,0 +1,27 @@
+---
+import { getCollection } from 'astro:content'
+import MarkdownPostLayout from '../../../layouts/MarkdownPostLayout.astro'
+
+export async function getStaticPaths() {
+  const blogEntries = await getCollection('posts')
+
+  return blogEntries.map(entry => {
+    const [lang, ...slug] = entry.slug.split('/')
+
+    return {
+      params: { lang, slug: slug.join('/') || undefined },
+      props: { entry }
+    }
+  })
+}
+
+const { entry } = Astro.props
+const { lang, slug } = Astro.params
+const formattedDate = entry.data.pubDate.toLocaleString(lang)
+const { Content } = await entry.render()
+---
+
+<MarkdownPostLayout
+  frontmatter={{ ...entry.data, pubDate: formattedDate, lang, slug }}>
+  <Content />
+</MarkdownPostLayout>

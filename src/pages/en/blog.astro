@@ -1,18 +1,18 @@
 ---
 import { getCollection } from 'astro:content'
-import BlogPost from '../components/BlogPost.astro'
-import { getLangFromUrl, useTranslatedPath } from '../i18n/utils'
-import BaseLayout from '../layouts/BaseLayout.astro'
-import '../styles/global.css'
+import BlogPost from '../../components/BlogPost.astro'
+import { getLangFromUrl, useTranslatedPath } from '../../i18n/utils'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import '../../styles/global.css'
 const allPosts = await getCollection('posts')
 
-const pageTitle = 'Mi blog de Astro aprendizaje'
+const pageTitle = 'My Astro blog page'
 const lang = getLangFromUrl(Astro.url)
 const translatePath = useTranslatedPath(lang)
 ---
 
 <BaseLayout pageTitle={pageTitle}>
-  <p>Aquí es donde publicaré acerca de mi viaje aprendiendo Astro.</p>
+  <p>Here are some posts of my authory.</p>
   <ul>
     {
       allPosts.map(post => (

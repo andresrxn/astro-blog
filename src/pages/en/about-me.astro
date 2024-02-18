@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import '../../styles/global.css'
+const pageTitle = 'About me'
+
+const identity = {
+  firstName: 'Sarah',
+  country: 'Canada',
+  occupation: 'Escritor técnico',
+  hobbies: ['fotografia', 'observación de aves', 'peñarol']
+}
+
+const skills = [
+  'HTML',
+  'CSS',
+  'JavaScript',
+  'React',
+  'Astro',
+  'Redacción de documentos'
+]
+
+const happy = true
+const finished = true
+const goal = 3
+
+// const skillColor = 'navy'
+// const fontWeight = 'bold'
+// const textCase = 'uppercase'
+---
+
+<BaseLayout pageTitle={pageTitle}>
+  <h2>... ¡and my new Astro site!</h2>
+
+  <p>
+    it does not have the same spanish content because im just practicing it, you
+    know, the Astro i18n
+  </p>
+
+  <ul>
+    <li>My name is {identity.firstName}.</li>
+    <li>I live in {identity.country} and i work on {identity.occupation}.</li>
+    {
+      identity.hobbies.length >= 2 && (
+        <li>
+          Two of my hobbies are: {identity.hobbies[0]} y {identity.hobbies[1]}
+        </li>
+      )
+    }
+  </ul>
+  <p>My Skills:</p>
+  <ul>
+    {skills.map(skill => <li class='skill'>{skill}</li>)}
+  </ul>
+
+  {happy && <p>I'm kinda happy learning Astro!</p>}
+
+  {finished && <p>¡I Finished the tutorial!</p>}
+
+  {
+    goal === 3 ? (
+      <p>My goal is finishing it in 3 days.</p>
+    ) : (
+      <p>My goal is not finishing it in 3 days.</p>
+    )
+  }
+</BaseLayout>
